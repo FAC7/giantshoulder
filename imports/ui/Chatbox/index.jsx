@@ -1,4 +1,5 @@
 import React from 'react'
+import { Messages } from '../../api/dataModels.js'
 
 export default class Chatbox extends React.Component {
   componentDidMount () {
@@ -18,7 +19,11 @@ export default class Chatbox extends React.Component {
   }
 
   onSubmit () {
-    //
+    const message = document.getElementsByClassName('chatbox')[0]
+    Messages.insert({
+      message: message.value
+    })
+    message.value = ''
   }
 
   render () {

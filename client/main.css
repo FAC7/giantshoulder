@@ -1,1 +1,29 @@
 /* CSS declarations go here */
+
+form {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chatbox {
+  height: 200px;
+  width: 70%;
+  border: none;
+  outline: none;
+  display: inline;
+}
+
+.chat-btn {
+  width: 20%;
+  height: 200px;
+  background-color: #D13A17;
+  color: white;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+
+.inline {
+  /*display: inline-block;*/
+}

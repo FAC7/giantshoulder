@@ -1,10 +1,13 @@
 import React from 'react'
+import Doc from './Doc.jsx'
+import MessagesView from './MessagesView.jsx'
 
 export default class App extends React.Component {
-  render() {
+  render () {
     return (
       <div>
-        <h1>Hey guys</h1>
+        <Doc />
+        <MessagesView />
       </div>
     )
   }

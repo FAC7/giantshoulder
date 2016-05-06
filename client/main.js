@@ -5,8 +5,7 @@ import App from '../imports/ui/App.jsx'
 
 import './main.html'
 
-
 Meteor.startup(() => {
-  render (
+  render(
     <App />, document.getElementById('render-target'))
 })

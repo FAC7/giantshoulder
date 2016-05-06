@@ -1,5 +1,5 @@
 Chats = new Mongo.Collection("chats");
-Questions = new Mongo.Collection("questions");
+
 
 if (Meteor.isClient) {
   Meteor.subscribe("chats");

@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
+import ReactDOM from 'react-dom'
 import { createContainer } from 'meteor/react-meteor-data'
 
 import { Docs } from '../api/docs.js'
+import DocElement from './DocElement.jsx'
 
 export default class Doc extends Component {
   handleClick(event) {
@@ -15,35 +17,44 @@ export default class Doc extends Component {
       linkTitle
     })
 
-    ReactDom.findDOMNode(this.refs.titleInput).value = ''
-    ReactDom.findDOMNode(this.refs.linkInput).value = ''
+    ReactDOM.findDOMNode(this.refs.titleInput).value = ''
+    ReactDOM.findDOMNode(this.refs.linkInput).value = ''
   }
 
-  renderTasks() {
+  renderDocs() {
     return this.props.docs.map((doc) => (
-      <Doc key={doc._id} doc={doc} />
+      <DocElement key={doc._id} doc={doc} />
     ))
   }
 
   render () {
     return (
-      <div>
-        <h3>Docs</h3>
+      <div className="container">
+        <header>
+        <h2>Docs</h2>
         <ul>
-          {[
-            {
-              linkSrc: 'https://docs.google.com/document/d/13SA4cPWhSp8w39zi7_peXY3id8GvlnzkFa_w44hTYfg/edit',
-              linkTitle: 'link 1'
-            }
-          ].map(link =>
-            <li><a href={link.linkSrc} target='_blank'>{link.linkTitle}</a></li>
-          )}
+        {this.renderDocs()}
         </ul>
-        <h3>New Doc</h3>
-        <input type='text' ref='titleInput' placeholder='Title'/>
-        <input type='text' ref='linkInput' placeholder='Link'/>
-        <button onClick={this.props.handleClick}>+</button>
+
+          <h2>New Doc</h2>
+          <form className="new-task" onSubmit={this.handleClick.bind(this)} >
+            <input type='text' ref='titleInput' placeholder='Title'/>
+            <input type='text' ref='linkInput' placeholder='Link'/>
+            <button onClick={this.props.handleClick}>Add Document</button>
+          </form>
+        </header>
+
       </div>
     )
   }
 }
+
+Doc.propTypes = {
+  docs: PropTypes.array.isRequired,
+};
+
+export default createContainer(() => {
+  return {
+      docs: Docs.find({}).fetch()
+    };
+}, Doc);

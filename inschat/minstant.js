@@ -1,9 +1,11 @@
 Chats = new Mongo.Collection("chats");
+Questions = new Mongo.Collection("questions");
 
 if (Meteor.isClient) {
   Meteor.subscribe("chats");
   Meteor.subscribe("userStatus");
   Meteor.subscribe("users");
+  Meteor.subscribe("questions");
 
 // set up the main template the the router will use to build pages
 
@@ -80,12 +82,22 @@ Template.chat_page.helpers({
      console.log("Recovered chat: ", chat);
      return chat.messages;
    }
+ },
+ recentQuestions:function(){
+   var chatId = Session.get("chatId");
+   var chat = Chats.findOne({_id:chatId});
+   if (!chat) {
+    return [];
+    } else {
+      console.log("Recovered chat: ", chat);
+      return chat.questions;
+    }
   }
 });
 
 Template.chat_page.events({
  // this event fires when the user sends a message on the chat page
- 'submit .js-send-chat':function(event){
+ 'submit #chat':function(event){
    // stop the form from triggering a page reload
    event.preventDefault();
    // see if we can find a chat object in the database
@@ -96,6 +108,18 @@ Template.chat_page.events({
    event.target.chat.value = "";
    // Call private method in Meteor
    Meteor.call('sendMessage', newmessage, chatid);
+ },
+ 'submit #question':function(event){
+   // stop the form from triggering a page reload
+   event.preventDefault();
+   // see if we can find a chat object in the database
+   // to which we'll add the message
+   var newquestion = event.target.question.value;
+   var chatid = Session.get("chatId");
+   // reset the form
+   event.target.question.value = "";
+   // Call private method in Meteor
+   Meteor.call('askQuestion', newquestion, chatid);
  }
 });
 
@@ -110,7 +134,6 @@ Meteor.methods({
 
     var filter = {_id:chatid};
     var user = Meteor.users.findOne({_id:Meteor.userId()});
-    var my_avatar = user.profile.avatar;
     var chat = Chats.findOne(filter);
 
     if (chat){// ok - we have a chat to use
@@ -121,7 +144,7 @@ Meteor.methods({
       // is a good idea to insert data straight from the form
       // (i.e. the user) into the database?? certainly not.
       // push adds the message to the end of the array
-      msgs.push({username: user.profile.username, avatar: my_avatar, messageText: newmessage});
+      msgs.push({username: user.profile.username, createdAt: (new Date()).toISOString(), messageText: newmessage});
       // put the messages array onto the chat object
       chat.messages = msgs;
       console.log("Updating chats with", chat);
@@ -131,6 +154,35 @@ Meteor.methods({
       console.log("Cant find chat to insert to");
     }
   },
+
+  askQuestion: function (newquestion, chatid) {
+     console.log("Asking Question");
+     if (! Meteor.userId()) {
+       throw new Meteor.Error("not-authorized");
+     }
+
+     var filter = {_id:chatid};
+     var user = Meteor.users.findOne({_id:Meteor.userId()});
+     var chat = Chats.findOne(filter);
+
+     if (chat){// ok - we have a chat to use
+       var questions = chat.questions; // pull the messages property
+       if (!questions){// no messages yet, create a new array
+         questions = [];
+       }
+       // is a good idea to insert data straight from the form
+       // (i.e. the user) into the database?? certainly not.
+       // push adds the message to the end of the array
+       questions.push({username: user.profile.username, createdAt: (new Date()).toISOString(), questionText: newquestion});
+       // put the messages array onto the chat object
+       chat.questions = questions;
+       console.log("Updating chats with", chat);
+       // update the chat object in the database.
+       Chats.update(chat._id, chat);
+     } else {
+       console.log("Which chat should the question go to?");
+     }
+   },
 
   getChatId: function (otherUserId) {
     var filter = {$or:[

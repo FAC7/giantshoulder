@@ -4,7 +4,7 @@ An app that connects school communities around the world.
 ### Promoting Multicultural Learning
 * Encouraging pupils from different cultural backgrounds to collaborate on academic projects.
 * Facilitating learning English as a foreign language through real time chat.
-* Enabling online teacher involvement and feedback.
+* Enabling real time teacher involvement and feedback online
 
 ### Style Guide
 1. Brand Colors - We mostly use Red for banners etc. with white text and Grey for the text color.

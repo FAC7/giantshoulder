@@ -1,7 +1,5 @@
 /* CSS declarations go here */
-body {
-  font-family: url('http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);')
-}
+
 
 .navbar-default {
   border: none;
@@ -48,4 +46,22 @@ body {
 
 .row {
   margin-bottom: 8px;
+}
+
+.js-send-chat {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 80%;
+}
+
+.js-send-chat input {
+  width: 80%;
+  border: none;
+  outline: none;
+}
+
+.js-send-chat button {
+  width: 20%;
+  border: none;
 }

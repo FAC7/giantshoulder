@@ -12,7 +12,7 @@ export default class MessagesList extends Component {
       <div>
         <ul>
           <li>
-          <li>
+          </li>
         </ul>
       </div>
     )

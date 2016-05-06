@@ -70,20 +70,37 @@
 <template name="chat_page">
   <h2>Chat here</h2>
     <div class="row">
-     <div class="col-md-12">
+      <div class="col-md-12">
         <div class="well well-lg">
         {{#each recentMessages}}
         {{> message}}
         {{/each}}
         </div>
+      </div>
     </div>
-  </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="well well-lg">
+        {{#each recentQuestions}}
+        {{> question}}
+        {{/each}}
+        </div>
+      </div>
+    </div>
   <div class="row">
     <div class="col-md-12">
-      <form class="js-send-chat" method="POST">
+      <form class="js-send-chat" method="POST" id="chat">
         <div class="container">
           <input class="input" type="text" name="chat" placeholder="type a message here...">
-          <button class="btn btn-default">Send</button>
+          <button class="btn btn-default">Chat</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-12">
+      <form class="js-send-chat" method="POST" id="question">
+        <div class="container">
+          <input class="input" type="text" name="question" placeholder="ask a question here...">
+          <button class="btn btn-default">Ask</button>
         </div>
       </form>
     </div>
@@ -92,12 +109,21 @@
 
 <!-- simple template that displays a message -->
 <template name="message">
+ <div class="container">
+    <div class="row">
+        <div class="username">{{username}} said: 
+        </div>
+        <div class="message-text">{{messageText}}</div>
+    </div>
+ </div>
+</template>
+
+<template name="question">
  <div class = "container">
     <div class = "row">
-        <div class = "username">{{username}} said:
-            <img src="/{{avatar}}" class="avatar_img">
+        <div class="username">{{username}} said:
         </div>
-        <div class = "message-text">{{messageText}}</div>
+        <div class="message-text">{{questionText}}</div>
     </div>
  </div>
 </template>

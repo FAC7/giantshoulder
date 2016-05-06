@@ -1,4 +1,4 @@
-Chats = new Mongo.Collection("chats");
+let Chats = new Mongo.Collection("chats");
 
 if (Meteor.isClient) {
   Meteor.subscribe("chats");

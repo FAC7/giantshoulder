@@ -1,9 +1,11 @@
-let Chats = new Mongo.Collection("chats");
+Chats = new Mongo.Collection("chats");
+
 
 if (Meteor.isClient) {
   Meteor.subscribe("chats");
   Meteor.subscribe("userStatus");
   Meteor.subscribe("users");
+  Meteor.subscribe("questions");
 
 // set up the main template the the router will use to build pages
 
@@ -86,16 +88,17 @@ Template.chat_page.helpers({
    var chat = Chats.findOne({_id:chatId});
    if (!chat) {
     return [];
-  } else {
-    console.log("Recovered chat: ", chat);
-    return chat.questions;
+    } else {
+      console.log("Recovered chat: ", chat);
+      return chat.questions;
+    }
   }
-}
 });
 
 Template.chat_page.events({
  // this event fires when the user sends a message on the chat page
  'submit #sendChat':function(event){
+
    // stop the form from triggering a page reload
    event.preventDefault();
    // see if we can find a chat object in the database
@@ -108,6 +111,7 @@ Template.chat_page.events({
    Meteor.call('sendMessage', newmessage, chatid);
  },
  'submit #askQuestion':function(event){
+
    // stop the form from triggering a page reload
    event.preventDefault();
    // see if we can find a chat object in the database
@@ -130,6 +134,7 @@ Template.chat_page.events({
    document.getElementById('questionView').classList.remove('active')
    document.getElementById('questionWrap').style.display = 'none'
    document.getElementById('chatWrap').style.display = 'block'
+
  }
 });
 
@@ -144,7 +149,6 @@ Meteor.methods({
 
     var filter = {_id:chatid};
     var user = Meteor.users.findOne({_id:Meteor.userId()});
-    var my_avatar = user.profile.avatar;
     var chat = Chats.findOne(filter);
 
     if (chat){// ok - we have a chat to use
@@ -155,7 +159,7 @@ Meteor.methods({
       // is a good idea to insert data straight from the form
       // (i.e. the user) into the database?? certainly not.
       // push adds the message to the end of the array
-      msgs.push({username: user.profile.username, avatar: my_avatar, messageText: newmessage});
+      msgs.push({username: user.profile.username, createdAt: (new Date()).toISOString(), messageText: newmessage});
       // put the messages array onto the chat object
       chat.messages = msgs;
       console.log("Updating chats with", chat);
@@ -192,6 +196,35 @@ Meteor.methods({
        Chats.update(chat._id, chat);
      } else {
        console.log("Cant find chat to insert to");
+     }
+   },
+
+  askQuestion: function (newquestion, chatid) {
+     console.log("Asking Question");
+     if (! Meteor.userId()) {
+       throw new Meteor.Error("not-authorized");
+     }
+
+     var filter = {_id:chatid};
+     var user = Meteor.users.findOne({_id:Meteor.userId()});
+     var chat = Chats.findOne(filter);
+
+     if (chat){// ok - we have a chat to use
+       var questions = chat.questions; // pull the messages property
+       if (!questions){// no messages yet, create a new array
+         questions = [];
+       }
+       // is a good idea to insert data straight from the form
+       // (i.e. the user) into the database?? certainly not.
+       // push adds the message to the end of the array
+       questions.push({username: user.profile.username, createdAt: (new Date()).toISOString(), questionText: newquestion});
+       // put the messages array onto the chat object
+       chat.questions = questions;
+       console.log("Updating chats with", chat);
+       // update the chat object in the database.
+       Chats.update(chat._id, chat);
+     } else {
+       console.log("Which chat should the question go to?");
      }
    },
 

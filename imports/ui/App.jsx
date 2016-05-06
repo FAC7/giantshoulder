@@ -1,11 +1,9 @@
 import React from 'react'
-import Doc from './Doc.jsx'
 
 export default class App extends React.Component {
-  render () {
+  render() {
     return (
       <div>
-        <Doc />
       </div>
     )
   }

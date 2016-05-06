@@ -20,9 +20,8 @@
  <nav class="navbar navbar-default">
    <div class="container-fluid">
     <div class="navbar-header">
-     <a class="navbar-brand" href="/">
-      Minstant!
-     </a>
+      <div class="navbar-brand" href="/">
+      </div>
     </div>
    <div class="nav navbar-nav">
    {{> loginButtons}}
@@ -69,7 +68,6 @@
 
 <!-- Top level template for the chat page -->
 <template name="chat_page">
-  <h2>Type in the box below to send a message!</h2>
     <ul class="nav nav-tabs">
       <li role="question" id='questionView' class='active'>
         <a href="#">Questions</a>
@@ -91,8 +89,10 @@
       <div class="row">
         <div class="col-md-12">
           <form id='askQuestion' class="js-send-chat" method="POST">
-            <input class="input" type="text" name="question" placeholder="ask a question...">
-            <button class="btn btn-default">Question</button>
+            <div class='cont'>
+              <input class="input" type="text" name="question" placeholder="ask a question...">
+              <button class="btn btn-default">Question</button>
+            </div>
           </form>
         </div>
       </div>
@@ -110,8 +110,10 @@
       <div class="row">
         <div class="col-md-12">
           <form id='sendChat' class="js-send-chat" method="POST">
-            <input class="input" type="text" name="chat" placeholder="type a chat message...">
-            <button class="btn btn-default">Chat</button>
+            <div class='cont'>
+              <input class="input" type="text" name="chat" placeholder="type a chat message...">
+              <button class="btn btn-default">Chat</button>
+            </div>
           </form>
         </div>
       </div>
@@ -120,13 +122,15 @@
 
 <!-- simple template that displays a message -->
 <template name="message">
- <div class = "container">
-    <div class = "row">
-        <div class = "username">{{username}} </div>
-        <div class = "message-text"> said: {{messageText}}</div>
+ <div class="container">
+    <div class="row">
+        <div class="username">{{username}} said:
+        </div>
+        <div class="message-text">{{messageText}}</div>
     </div>
  </div>
 </template>
+
 <template name="question">
  <div class = "container">
     <div class = "row">

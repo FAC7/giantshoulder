@@ -1,1 +1,99 @@
 /* CSS declarations go here */
+.dropdown-menu {
+  left: -155px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar-default {
+  border: none;
+  box-shadow: 0px 1px 1px #eee;
+  border-radius: 0;
+}
+
+.navbar {
+  background-color: #FFF;
+}
+
+.navbar-header {
+  float: left;
+  padding-left: 30px;
+  width: 200px;
+}
+
+.navbar-brand {
+  background-image: url('/logo.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-nav {
+  float: right;
+  margin-top: 30px;
+}
+
+.username {
+  letter-spacing: 1px;
+  color: #000;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.username img {
+  display: none;
+}
+
+.row {
+  margin-bottom: 8px;
+}
+
+.js-send-chat {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.js-send-chat input {
+  height: 100px;
+  width: 80%;
+  margin: 0;
+  padding-left: 16px;
+  border: none;
+  outline: none;
+  display: inline;
+  float: left;
+  /*resize: none;*/
+  background-color: #F7F7F7;
+}
+
+.js-send-chat button {
+  width: 20%;
+  height: 100px;
+  background-color: #D13A17;
+  color: white;
+  text-align: center;
+  border: none;
+  outline: none;
+  float: left;
+  border: 5px solid #F7F7F7;
+  border-radius: 8px;
+}
+
+form .cont {
+  overflow: auto;
+  border: 1px solid #E7E7E7;
+  border-radius: 5px;
+  background-color: #F7F7F7;
+}

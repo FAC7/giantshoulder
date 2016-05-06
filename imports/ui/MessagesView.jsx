@@ -1,8 +1,13 @@
 import React, {Component} from 'react'
 
+import MessagesList from './MessagesList.jsx'
+
 const styles = {
   messagesView: {
     width: '100%'
+  },
+  listView: {
+
   }
 }
 
@@ -22,7 +27,7 @@ export default class MessagesView extends Component {
           <li role="chat" className={this.state.currentView === 'chat' ? 'active' : ''}>
             <a href="#" onClick={() => this.setState({currentView: 'chat'})}>Chat</a></li>
         </ul>
-        <h1>Component goes here</h1>
+        <MessagesList currentView={this.state.currentView} />
       </div>
     )
   }

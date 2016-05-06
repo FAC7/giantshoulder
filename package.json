@@ -2,11 +2,9 @@
   "name": "chat",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor"
   },
   "dependencies": {
     "meteor-node-stubs": "~0.2.0",
-    "react": "^15.0.2",
-    "react-dom": "^15.0.2"
   }
 }

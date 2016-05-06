@@ -1,1 +1,45 @@
 /* CSS declarations go here */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+form {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  overflow: auto;
+  border: 1px solid black;
+}
+
+.chatbox {
+  height: 200px;
+  width: 80%;
+  margin: 0;
+  padding: 8px;
+  border: none;
+  outline: none;
+  display: inline;
+  float: left;
+  resize: none;
+}
+
+.chat-btn {
+  width: 20%;
+  height: 200px;
+  background-color: #D13A17;
+  color: white;
+  text-align: center;
+  border: none;
+  outline: none;
+  float: left;
+  border: 5px solid white;
+}
+
+.inline {
+  /*display: inline-block;*/
+}

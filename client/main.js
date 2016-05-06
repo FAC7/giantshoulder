@@ -7,6 +7,6 @@ import './main.html'
 
 
 Meteor.startup(() => {
-  render (
+  render(
     <App />, document.getElementById('render-target'))
 })

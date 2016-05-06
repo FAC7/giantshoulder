@@ -1,3 +1,10 @@
+import React from 'react'
+import { Meteor } from 'meteor/meteor'
+import { render } from 'react-dom'
+import App from '../imports/ui/App.jsx'
+
+import './minstant.html'
+
 Chats = new Mongo.Collection("chats");
 
 
@@ -232,3 +239,8 @@ if (Meteor.isServer) {
    return Meteor.users.find({ "status.online": true });
   });
 }
+
+Meteor.startup(() => {
+  render (
+    <App />, document.getElementById('render-target'))
+})

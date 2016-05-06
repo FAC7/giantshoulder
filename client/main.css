@@ -97,3 +97,12 @@ form .container {
   border-radius: 5px;
   background-color: #F7F7F7;
 }
+
+.user_avatar{
+	min-height:100px;
+	text-align: center;
+
+}
+.avatar_img{
+	height:75px;
+}

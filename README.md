@@ -1,11 +1,16 @@
 ## Giant's Shoulder
 An app that connects school communities around the world.
 
+### Promoting Multicultural Learning
+* Encouraging pupils from different cultural backgrounds to collaborate on academic projects.
+* Facilitating learning English as a foreign language through real time chat.
+* Enabling online teacher involvement and feedback.
+
 ### Style Guide
-1. Brand Colors - We mostly use Red for banners etc. with white text and Grey for the text color. 
+1. Brand Colors - We mostly use Red for banners etc. with white text and Grey for the text color.
 Red Color: RGB (209,58,23) or Hex: #D13A17      
 
-2. Font for the text - We normally use Open Sans in grey but please feel free to use anything else. 
+2. Font for the text - We normally use Open Sans in grey but please feel free to use anything else.
 
 3. Buttons - Red (same RGB (209,58,23) or Hex: #D13A17) with white text.
 

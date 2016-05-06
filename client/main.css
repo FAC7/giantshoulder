@@ -1,4 +1,9 @@
 /* CSS declarations go here */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 form {
   width: 90%;
@@ -6,12 +11,21 @@ form {
   margin-right: auto;
 }
 
+.container {
+  overflow: auto;
+  border: 1px solid black;
+}
+
 .chatbox {
   height: 200px;
-  width: 70%;
+  width: 80%;
+  margin: 0;
+  padding: 8px;
   border: none;
   outline: none;
   display: inline;
+  float: left;
+  resize: none;
 }
 
 .chat-btn {
@@ -22,6 +36,8 @@ form {
   text-align: center;
   border: none;
   outline: none;
+  float: left;
+  border: 5px solid white;
 }
 
 .inline {

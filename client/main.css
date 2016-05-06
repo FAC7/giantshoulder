@@ -1,5 +1,9 @@
 /* CSS declarations go here */
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .navbar-default {
   border: none;
@@ -52,16 +56,40 @@
   border: none;
   padding: 0;
   margin: 0;
-  width: 80%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .js-send-chat input {
+  height: 100px;
   width: 80%;
+  margin: 0;
+  /*padding: 8px;*/
   border: none;
   outline: none;
+  display: inline;
+  float: left;
+  /*resize: none;*/
+  background-color: #F7F7F7;
 }
 
 .js-send-chat button {
   width: 20%;
+  height: 100px;
+  background-color: #D13A17;
+  color: white;
+  text-align: center;
   border: none;
+  outline: none;
+  float: left;
+  border: 5px solid #F7F7F7;
+  border-radius: 8px;
+}
+
+form .container {
+  overflow: auto;
+  border: 1px solid #E7E7E7;
+  border-radius: 5px;
+  background-color: #F7F7F7;
 }

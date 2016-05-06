@@ -70,33 +70,68 @@
 <!-- Top level template for the chat page -->
 <template name="chat_page">
   <h2>Type in the box below to send a message!</h2>
-    <div class="row">
-     <div class="col-md-12">
-        <div class="well well-lg">
-        {{#each recentMessages}}
-        {{> message}}
-        {{/each}}
+    <ul class="nav nav-tabs">
+      <li role="question" id='questionView' class='active'>
+        <a href="#">Questions</a>
+      </li>
+      <li role="chat" id='chatView'>
+        <a href="#">Chat</a>
+      </li>
+    </ul>
+    <div id='questionWrap'>
+      <div class="row" id='questionList'>
+        <div class="col-md-12">
+          <div class="well well-lg">
+            {{#each recentQuestions}}
+            {{> question}}
+            {{/each}}
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form id='askQuestion' class="js-send-chat" method="POST">
+            <input class="input" type="text" name="question" placeholder="ask a question...">
+            <button class="btn btn-default">Question</button>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-        <form class="js-send-chat" method="POST">
-        <input class="input" type="text" name="chat" placeholder="type a message here...">
-        <button class="btn btn-default">Send</button>
-    </form>
+    <div id='chatWrap' style='display:none'>
+      <div class="row" id='chatList'>
+        <div class="col-md-12">
+          <div class="well well-lg">
+            {{#each recentMessages}}
+              {{> message}}
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form id='sendChat' class="js-send-chat" method="POST">
+            <input class="input" type="text" name="chat" placeholder="type a chat message...">
+            <button class="btn btn-default">Chat</button>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-</template>
+  </template>
 
 <!-- simple template that displays a message -->
 <template name="message">
  <div class = "container">
     <div class = "row">
-        <div class = "username">{{username}}
-            <img src="/{{avatar}}" class="avatar_img">
-        </div>
+        <div class = "username">{{username}} </div>
         <div class = "message-text"> said: {{messageText}}</div>
+    </div>
+ </div>
+</template>
+<template name="question">
+ <div class = "container">
+    <div class = "row">
+        <div class = "username">{{username}} </div>
+        <div class = "message-text"> said: {{questionText}}</div>
     </div>
  </div>
 </template>

@@ -1,8 +1,15 @@
 import React from 'react'
+import { Messages } from '../../api/dataModels'
 
 export default class Chatbox extends React.Component {
+
   onSubmit () {
-    //
+    const message = document.getElementsByClassName('chatbox inline')
+    Messages.insert({
+      message,
+      owner: Meteor.userId(),
+      username: Meteor.user().username
+    })
   }
 
   render () {

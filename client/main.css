@@ -1,4 +1,8 @@
 /* CSS declarations go here */
+.dropdown-menu {
+  left: -155px;
+}
+
 * {
   margin: 0;
   padding: 0;
